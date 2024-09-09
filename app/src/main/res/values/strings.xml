@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name" translatable="false">Cinerama</string>
+    <string name="developer" translatable="false">Jhonatan</string>
+    <string name="Version" translatable="false">Versíon 1.0.0</string>
+
+
+    <style name="NoAnimationBottomNavigationView" parent="Widget.MaterialComponents.BottomNavigationView">
+        <item name="itemHorizontalTranslationEnabled">false
+        </item>
+        <item name="itemIconTint">@null
+        </item>
+    </style>
+
+    <string name="tab_peliculas_description">Tab layout for movies</string>
+
+    <string-array name="Amazonas">
+        <item>Opción 1</item>
+        <item>Opción 2</item>
+        <item>Opción 3</item>
+    </string-array>
+</resources>
