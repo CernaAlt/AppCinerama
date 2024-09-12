@@ -1,4 +1,4 @@
-package com.app.cinerma;
+package com.app.cinerma.design;
 
 import android.os.Bundle;
 
@@ -8,7 +8,12 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.app.cinerma.R;
 import com.app.cinerma.databinding.ActivityMainBinding;
+import com.app.cinerma.design.peliculas.CinesFragment;
+import com.app.cinerma.design.peliculas.MainPeliculasFragment;
+import com.app.cinerma.design.peliculas.MoviesFragment;
+import com.app.cinerma.design.start.MainHomeFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,11 +31,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(bilding.getRoot());
         replaceFragment(new MainHomeFragment());
         bilding.btnNavegation.setOnItemSelectedListener(item -> {
-            if(item.getItemId()==R.id.homeM){
+            if(item.getItemId()== R.id.homeM){
                 replaceFragment(new MainHomeFragment());
             }
             if(item.getItemId()==R.id.moviesM){
-                replaceFragment(new MainPeliculasFragment());
+                replaceFragment(new MoviesFragment());
             }
             if(item.getItemId()==R.id.cinemaM){
                 replaceFragment(new CinesFragment());

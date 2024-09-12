@@ -1,6 +1,5 @@
-package com.app.cinerma.adapters;
+package com.app.cinerma.design.peliculas.adapters;
 
-import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,11 +10,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.cinerma.R;
-import com.app.cinerma.entities.Pelicula;
+import com.app.cinerma.design.peliculas.entities.Pelicula;
 
 import java.util.List;
 
-import com.app.cinerma.activity_pelicula_show;
+import com.app.cinerma.design.peliculas.activity_pelicula_show;
 
 public class PeliculaAdapter extends RecyclerView.Adapter<PeliculaAdapter.ViewHolder> {
 
@@ -36,7 +35,7 @@ public class PeliculaAdapter extends RecyclerView.Adapter<PeliculaAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Pelicula item = peliculas.get(position);
-        holder.textViewTitle.setText(item.getTitle());
+        //holder.textViewTitle.setText(item.getTitle());
         holder.textViewDescription.setText(item.getDescription());
         holder.textViewGenero.setText(item.getGenero());
         holder.textViewYear.setText(String.valueOf(item.getYear()));
@@ -64,14 +63,14 @@ public class PeliculaAdapter extends RecyclerView.Adapter<PeliculaAdapter.ViewHo
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        final TextView textViewTitle;
+        //final TextView textViewTitle;
         final TextView textViewDescription;
         final TextView textViewGenero;
         final TextView textViewYear;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            textViewTitle = itemView.findViewById(R.id.textViewTitle);
+            //textViewTitle = itemView.findViewById(R.id.textViewTitle);
             textViewDescription = itemView.findViewById(R.id.textViewDescription);
             textViewGenero = itemView.findViewById(R.id.textViewGenero);
             textViewYear=itemView.findViewById(R.id.textViewYear);

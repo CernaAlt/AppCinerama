@@ -1,4 +1,4 @@
-package com.app.cinerma;
+package com.app.cinerma.design.peliculas;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,9 +9,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.app.cinerma.adapters.PeliculaAdapter;
+import com.app.cinerma.design.peliculas.adapters.PeliculaAdapter;
 import com.app.cinerma.databinding.FragmentMainPeliculasBinding;
-import com.app.cinerma.entities.Pelicula;
+import com.app.cinerma.design.peliculas.entities.Pelicula;
 
 import java.util.ArrayList;
 import java.util.List;

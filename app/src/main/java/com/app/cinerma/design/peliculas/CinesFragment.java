@@ -1,4 +1,4 @@
-package com.app.cinerma;
+package com.app.cinerma.design.peliculas;
 
 import androidx.fragment.app.Fragment;
 

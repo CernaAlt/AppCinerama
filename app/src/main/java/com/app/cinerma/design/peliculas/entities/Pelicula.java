@@ -1,4 +1,4 @@
-package com.app.cinerma.entities;
+package com.app.cinerma.design.peliculas.entities;
 
 public class Pelicula {
     private String title;

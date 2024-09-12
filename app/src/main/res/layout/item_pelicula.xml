@@ -1,48 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal"
-    android:background="@color/colorFondo"
-    android:padding="16dp"
-    android:gravity="center_vertical">
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:background="@drawable/movie01">
 
-    <TextView
-        android:id="@+id/textViewTitle"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="Title"
-        android:textColor="@android:color/white"
-        android:textSize="18sp" />
+    <!-- Imagen de la película -->
+    <ImageView
+        android:id="@+id/movie_image"
+        android:layout_width="207dp"
+        android:layout_height="227dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textViewDescription"
-        android:layout_width="187dp"
+    <!-- Botón para ver horarios -->
+    <Button
+        android:id="@+id/view_button"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_weight="1"
-        android:text="Description"
-        android:textColor="@android:color/white"
-        android:textSize="18sp" />
+        app:layout_constraintTop_toBottomOf="@id/movie_image"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"
+        android:text="VER HORARIOS"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/colorText" />
 
-    <TextView
-        android:id="@+id/textViewGenero"
-        android:layout_width="101dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_weight="1"
-        android:text="Genero"
-        android:textColor="@android:color/white"
-        android:textSize="18sp" />
+</androidx.constraintlayout.widget.ConstraintLayout>
 
-    <TextView
-        android:id="@+id/textViewYear"
-        android:layout_width="66dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_weight="1"
-        android:text="Year"
-        android:textColor="@android:color/white"
-        android:textSize="18sp" />
-</LinearLayout>
+

@@ -1,7 +1,6 @@
-package com.app.cinerma;
+package com.app.cinerma.design.peliculas;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -10,6 +9,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.app.cinerma.R;
 import com.google.android.material.tabs.TabLayout;
 
 public class activity_pelicula_show extends AppCompatActivity {
