@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/coloSuperior">
+
+    <TextView
+        android:id="@+id/txtStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="4dp"
+        android:text="status"
+        android:textAlignment="center"
+        android:background="@color/colorFondo"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/image_container"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:background="@color/cardview_dark_background"
+        app:layout_constraintTop_toBottomOf="@id/txtStatus">
+
+        <ImageView
+            android:id="@+id/urlImagenDetail"
+            android:layout_width="411dp"
+            android:layout_height="237dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/pelicula_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="title"
+            android:textColor="@color/white"
+            android:textSize="27sp"
+            android:textStyle="bold"
+            android:shadowColor="#000000"
+            android:shadowDx="3"
+            android:shadowDy="3"
+            android:shadowRadius="20"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toTopOf="@id/genero_hora_edad"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/genero_hora_edad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Genero / 1:50 / +15"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            android:shadowColor="#000000"
+            android:shadowDx="3"
+            android:shadowDy="3"
+            android:shadowRadius="20"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginBottom="20dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- LinearLayout for synopsis and button -->
+    <LinearLayout
+        android:id="@+id/synopsis_container"
+        android:layout_width="392dp"
+        android:layout_height="60dp"
+        android:layout_margin="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/image_container">
+
+        <TextView
+            android:id="@+id/pelicula_sinopsis"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:text="Synopsis goes here..."
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/button_ver"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="Ver" />
+    </LinearLayout>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_peliculas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorFondo"
+        app:tabIndicatorColor="@color/colorFondo"
+        app:tabIndicatorFullWidth="true"
+        app:tabSelectedTextColor="@color/white"
+        app:tabTextAppearance="@style/TabTextStyle"
+        app:tabTextColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@id/synopsis_container"/>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/fragment_container_peliculas_detail"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_margin="8dp"
+        app:layout_constraintTop_toBottomOf="@id/tab_peliculas"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,8 +10,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.app.cinerma.R;
 import com.app.cinerma.databinding.ActivityMainBinding;
-import com.app.cinerma.design.peliculas.CinesFragment;
-import com.app.cinerma.design.peliculas.MainPeliculasFragment;
+import com.app.cinerma.design.cines.frament.CinesFragment;
 import com.app.cinerma.design.peliculas.MoviesFragment;
 import com.app.cinerma.design.start.MainHomeFragment;
 

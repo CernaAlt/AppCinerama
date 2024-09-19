@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorFondo"
+
+    android:padding="8dp">
+
+    <!-- Padding general paratodo el contenedor-->
+
+    <!-- Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:gravity="center_vertical"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        android:background="@drawable/borde_inferior_filtro"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="105dp"
+            android:layout_height="30dp"
+            android:src="@drawable/cinema_button" />
+
+        <TextView
+            android:layout_width="63dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="5dp"
+            android:layout_weight="1"
+            android:text="Filtra por sala"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+
+        <ImageView
+            android:id="@+id/btn_cierre_cine_f"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_close" />
+    </LinearLayout>
+
+    <!-- Opciones de Salas -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorFondo"
+        android:orientation="vertical">
+
+        <!-- Fila 1 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- Sala 2D -->
+            <LinearLayout
+                android:id="@+id/txt_2d"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="150dp"
+                android:gravity="center"
+                android:background="@color/white"
+                android:layout_margin="4dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2D"
+                    android:textSize="35sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+
+            <!-- Sala Regular -->
+            <LinearLayout
+                android:id="@+id/txt_regular"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="150dp"
+                android:gravity="center"
+                android:background="@color/white"
+                android:layout_margin="4dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="REGULAR"
+                    android:textSize="35sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Fila 2 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- Sala 3D -->
+            <LinearLayout
+                android:id="@+id/txt_3d"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="150dp"
+                android:gravity="center"
+                android:background="@color/white"
+                android:layout_margin="4dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3D"
+                    android:textSize="35sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+
+            <!-- Sala PRIME -->
+            <LinearLayout
+                android:id="@+id/txt_prime"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="150dp"
+                android:gravity="center"
+                android:background="@color/white"
+                android:layout_margin="4dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PRIME"
+                    android:textSize="35sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Fila 3 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- Sala XTREME -->
+            <LinearLayout
+                android:id="@+id/txt_xtreme"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="150dp"
+                android:gravity="center"
+                android:background="@color/white"
+                android:layout_margin="4dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="XTREME"
+                    android:textSize="35sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+
+            <!-- Sala SCREENX -->
+            <LinearLayout
+                android:id="@+id/txt_screenx"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="150dp"
+                android:gravity="center"
+                android:background="@color/white"
+                android:layout_margin="4dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="SCREENX"
+                    android:textSize="35sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
