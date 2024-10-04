@@ -35,6 +35,5 @@ public class buys02Activity extends AppCompatActivity {
                 startActivity(new Intent(buys02Activity.this, buys03Activity.class));
             }
         });
-
     }
 }
