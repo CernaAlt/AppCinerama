@@ -1,6 +1,8 @@
 package com.app.cinerma.design.peliculas.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -18,6 +20,8 @@ import com.app.cinerma.design.peliculas.Frament.SynopsisFragment;
 import com.app.cinerma.design.peliculas.adapters.MovieDetailPagerAdapter;
 import com.app.cinerma.design.peliculas.entities.Movie;
 import com.app.cinerma.design.peliculas.services.MovieApi;
+import com.app.cinerma.login.activities.InicioSesionActivity;
+import com.app.cinerma.login.activities.RegisterActivity;
 import com.app.cinerma.network.RetrofitClient;
 import com.bumptech.glide.Glide;
 import com.google.android.material.tabs.TabLayout;
@@ -44,6 +48,8 @@ public class movie_detailactivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.movie_detail_activity);
+
+
 
         initViews();
 
@@ -72,12 +78,6 @@ public class movie_detailactivity extends AppCompatActivity {
         } else {
             Toast.makeText(this, "Error: No se pudo obtener el ID de la película", Toast.LENGTH_SHORT).show();
         }
-
-        // Lógica para el botón "Ver"
-        buttonVer.setOnClickListener(v -> {
-            // Mostrar un mensaje cuando se haga clic en el botón
-            Toast.makeText(this, "Comprar", Toast.LENGTH_SHORT).show();
-        });
     }
 
     private void initViews() {
@@ -90,9 +90,19 @@ public class movie_detailactivity extends AppCompatActivity {
         tabPeliculas = findViewById(R.id.tab_peliculas);
         viewPager = findViewById(R.id.fragment_container_peliculas_detail);
 
-        // Inicializar el botón "Ver"
-        buttonVer = findViewById(R.id.button_ver); // Asegúrate de que el ID sea correcto
+        // inicializer el buttón "Ver"
+        buttonVer = findViewById(R.id.btn_ver); // Asegúrate de que el ID sea correcto
+
+        //Agregamos la logica para el ir a otra actividad
+        buttonVer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(movie_detailactivity.this, buys01Activity.class));
+            }
+        });
     }
+
+
 
     private void setupMovieApi() {
         movieApi = RetrofitClient.getRetrofitInstance().create(MovieApi.class);

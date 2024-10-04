@@ -1,6 +1,8 @@
 package com.app.cinerma.design;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,6 +15,10 @@ import com.app.cinerma.databinding.ActivityMainBinding;
 import com.app.cinerma.design.cines.frament.CinesFragment;
 import com.app.cinerma.design.peliculas.MoviesFragment;
 import com.app.cinerma.design.start.MainHomeFragment;
+import com.app.cinerma.login.activities.InicioSesionActivity;
+import com.app.cinerma.login.activities.RegisterActivity;
+import com.app.cinerma.login.activities.loginActivity;
+import com.google.firebase.FirebaseApp;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,10 +27,15 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         bilding = ActivityMainBinding.inflate(getLayoutInflater());
+
+        // Initialize Firebase
+        //FirebaseApp.initializeApp(this);
+
 
 
         setContentView(bilding.getRoot());
@@ -48,14 +59,16 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, BuscadorMain.class);
                 startActivity(intent);
             }
-        });
+        });*/
+
+        //button que nos redirige al inicion de sesion
         bilding.btnRegistro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                Intent intent = new Intent(MainActivity.this, InicioSesionActivity.class);
                 startActivity(intent);
             }
-        });*/
+        });
 
     }
 

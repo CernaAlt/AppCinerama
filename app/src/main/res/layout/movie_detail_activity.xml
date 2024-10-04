@@ -95,7 +95,7 @@
             android:textSize="16sp" />
 
         <Button
-            android:id="@+id/button_ver"
+            android:id="@+id/btn_ver"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"

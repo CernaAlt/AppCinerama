@@ -5,7 +5,6 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -18,13 +17,33 @@
         android:theme="@style/Theme.Cinerma"
         tools:targetApi="31">
         <activity
+            android:name=".buys03Activity"
+            android:exported="false" />
+        <activity
+            android:name=".design.peliculas.activities.buys02Activity"
+            android:exported="false" />
+        <activity
+            android:name=".design.peliculas.activities.buys01Activity"
+            android:exported="false" />
+        <activity
+            android:name=".login.activities.InicioSesionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".login.activities.RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".login.activities.CreateUserActivity"
+            android:exported="false" />
+        <activity
+            android:name=".login.activities.loginActivity"
+            android:exported="false" />
+        <activity
             android:name=".design.peliculas.activities.movie_detailactivity"
             android:exported="false" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCFQ73GZBBxR4sRKi85ZcEgEoRMJzRkQp8" />
-
+            android:value="AIzaSyCFQ73GZBBxR4sRKi85ZcEgEoRMJzRkQp8" /> <!-- Consider securing this -->
         <activity
             android:name=".design.MainActivity"
             android:exported="true">
