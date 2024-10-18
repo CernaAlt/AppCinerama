@@ -12,13 +12,11 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.app.cinerma.R;
 import com.app.cinerma.databinding.ActivityMainBinding;
+import com.app.cinerma.design.cines.frament.CinemaFragment;
 import com.app.cinerma.design.cines.frament.CinesFragment;
 import com.app.cinerma.design.peliculas.MoviesFragment;
 import com.app.cinerma.design.start.MainHomeFragment;
 import com.app.cinerma.login.activities.InicioSesionActivity;
-import com.app.cinerma.login.activities.RegisterActivity;
-import com.app.cinerma.login.activities.loginActivity;
-import com.google.firebase.FirebaseApp;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -48,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
                 replaceFragment(new MoviesFragment());
             }
             if(item.getItemId()==R.id.cinemaM){
-                replaceFragment(new CinesFragment());
+                replaceFragment(new CinemaFragment());
             }
             return true;
         });

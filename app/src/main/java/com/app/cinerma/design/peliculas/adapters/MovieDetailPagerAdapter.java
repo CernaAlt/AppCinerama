@@ -5,8 +5,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
+import com.app.cinerma.design.cines.frament.CinemaFragment;
 import com.app.cinerma.design.cines.frament.CinesFragment;
-import com.app.cinerma.design.peliculas.Frament.SynopsisFragment;
+import com.app.cinerma.design.cines.frament.Fragment_Cine_selection;
 
 public class MovieDetailPagerAdapter extends FragmentStateAdapter {
 
@@ -19,11 +20,9 @@ public class MovieDetailPagerAdapter extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         switch (position) {
             case 0:
-                return new SynopsisFragment(); // Primer fragmento (Sinopsis)
-            case 1:
-                return new CinesFragment();  // Segundo fragmento (Detalles)
+                return new Fragment_Cine_selection();
             default:
-                return new SynopsisFragment();
+                return new Fragment(); // or any default fragment
         }
     }
 

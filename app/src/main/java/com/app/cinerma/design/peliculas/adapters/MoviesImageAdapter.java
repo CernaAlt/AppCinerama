@@ -1,25 +1,29 @@
 package com.app.cinerma.design.peliculas.adapters;
 
-
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+
 import androidx.recyclerview.widget.RecyclerView;
 import com.app.cinerma.R;
 import com.app.cinerma.design.peliculas.activities.movie_detailactivity;
+import com.app.cinerma.design.peliculas.entities.Pelicula;
 import com.bumptech.glide.Glide;
 import java.util.List;
-import com.app.cinerma.design.peliculas.entities.Movie;
-
+import com.google.firebase.firestore.FirebaseFirestore;
 
 
 public class MoviesImageAdapter extends RecyclerView.Adapter<MoviesImageAdapter.ViewHolder>{
-    private List<Movie> movies;
-    private Context context;
-    public MoviesImageAdapter(List<Movie> movies,Context context) {
+    //Declaramos las variables
+    List<Pelicula> movies;
+    Context context;
+    FirebaseFirestore firestore;
+
+    //
+    public MoviesImageAdapter(List<Pelicula> movies, Context context) {
         this.movies = movies;
         this.context=context;
     }
@@ -31,21 +35,25 @@ public class MoviesImageAdapter extends RecyclerView.Adapter<MoviesImageAdapter.
         return new ViewHolder(view);
     }
 
+
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Movie movie = movies.get(position);
-        // Usar una biblioteca como Glide o Picasso para cargar la imagen
-        Glide.with(holder.itemView.getContext())
-                .load(movie.getImageUrl())
+        Pelicula movie = movies.get(position);
+
+        // Cargar la imagen usando Glide o Picasso
+        Glide.with(context)
+                .load(movie.getUrl())  // Asegúrate de que el campo `url` existe
                 .into(holder.imageView);
 
-        // Configurar el OnClickListener para el botón
-        holder.viewButton.setOnClickListener(v -> {
+        // Configurar el click para ver detalles de la película
+        holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, movie_detailactivity.class);
-            intent.putExtra("MOVIE_ID", movie.getId());
+            intent.putExtra("MOVIE_ID", movie.getId());  // Pasar el ID de la película
             context.startActivity(intent);
         });
     }
+
+
 
     @Override
     public int getItemCount() {
@@ -54,12 +62,10 @@ public class MoviesImageAdapter extends RecyclerView.Adapter<MoviesImageAdapter.
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView imageView;
-        View viewButton;
 
         ViewHolder(View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.movie_image);
-            viewButton = itemView.findViewById(R.id.view_button);
         }
     }
 }

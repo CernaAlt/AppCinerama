@@ -13,7 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.app.cinerma.R;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -22,7 +21,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
-public class RegisterActivity extends AppCompatActivity {
+public class PasswordOlvidadoActivity extends AppCompatActivity {
 
     private Button btn_Registrar;
     private EditText editTextName, editTextEmail, editTextPassword;
@@ -34,7 +33,7 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_register);
+        setContentView(R.layout.activity_password_olvidado);
 
         // Inicializar Firebase
         mFirestore = FirebaseFirestore.getInstance();
@@ -57,7 +56,7 @@ public class RegisterActivity extends AppCompatActivity {
                 if (!nameUser.isEmpty() && !emailUser.isEmpty() && !passwordUser.isEmpty()) {
                     insertUser(nameUser, emailUser, passwordUser);
                 } else {
-                    Toast.makeText(RegisterActivity.this, "Por favor, complete todos los campos", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PasswordOlvidadoActivity.this, "Por favor, complete todos los campos", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -77,12 +76,12 @@ public class RegisterActivity extends AppCompatActivity {
                     mFirestore.collection("User").document(id).set(map)
                             .addOnSuccessListener(aVoid -> {
                                 finish();
-                                startActivity(new Intent(RegisterActivity.this, loginActivity.class));
-                                Toast.makeText(RegisterActivity.this, "Usuario registrado con éxito", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(PasswordOlvidadoActivity.this, CuentaUserActivity.class));
+                                Toast.makeText(PasswordOlvidadoActivity.this, "Usuario registrado con éxito", Toast.LENGTH_SHORT).show();
                             })
-                            .addOnFailureListener(e -> Toast.makeText(RegisterActivity.this, "Error al registrar: " + e.getMessage(), Toast.LENGTH_SHORT).show());
+                            .addOnFailureListener(e -> Toast.makeText(PasswordOlvidadoActivity.this, "Error al registrar: " + e.getMessage(), Toast.LENGTH_SHORT).show());
                 } else {
-                    Toast.makeText(RegisterActivity.this, "Error al crear usuario: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PasswordOlvidadoActivity.this, "Error al crear usuario: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
         });

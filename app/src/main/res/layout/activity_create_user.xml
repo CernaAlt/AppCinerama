@@ -1,85 +1,229 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/colorFondo"
     tools:context=".login.activities.CreateUserActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:padding="16dp">
 
+        <!-- Title -->
         <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
+            android:id="@+id/txt_idTitle"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nombre"
-            android:textSize="16sp" />
+            android:text="Únete"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="16dp" />
 
+        <!-- Subtitle -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Completa tus datos y accede a nuestro universo de beneficios"
+            android:textSize="14sp"
+            android:textColor="@color/white"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Name -->
         <EditText
             android:id="@+id/txt_nameUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:contentDescription="Nombre de usuario"
-            android:ems="10"
-            android:hint="Name"
-            android:importantForAccessibility="yes"
-            android:inputType="text" />
+            android:hint="Nombre"
+            android:textColorHint="@color/white"
+            android:inputType="textPersonName"
+            android:layout_marginBottom="16dp" />
 
-        <TextView
-            android:id="@+id/textView2"
+        <!-- Paternal Surname -->
+        <EditText
+            android:id="@+id/txt_apellidoPaterno"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Email"
-            android:textSize="16sp" />
+            android:hint="Apellido Paterno"
+            android:textColorHint="@color/white"
+            android:inputType="textPersonName"
+            android:layout_marginBottom="16dp" />
 
+        <!-- Maternal Surname -->
+        <EditText
+            android:id="@+id/txt_apellidoMaterno"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Apellido Materno"
+            android:textColorHint="@color/white"
+            android:inputType="textPersonName"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Email -->
         <EditText
             android:id="@+id/txt_emailUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:contentDescription="Correo electrónico"
-            android:ems="10"
-            android:hint="Email"
-            android:importantForAccessibility="yes"
-            android:inputType="textEmailAddress" />
+            android:hint="Correo electrónico"
+            android:textColorHint="@color/white"
+            android:inputType="textEmailAddress"
+            android:layout_marginBottom="16dp" />
 
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Password"
-            android:textSize="16sp" />
-
+        <!-- Password -->
         <EditText
-            android:id="@+id/txt_passwordUser"
+            android:id="@+id/txt_passworPrimary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:contentDescription="Contraseña"
-            android:ems="10"
-            android:hint="Password"
-            android:importantForAccessibility="yes"
-            android:inputType="textPassword" />
+            android:hint="Contraseña"
+            android:textColorHint="@color/white"
+            android:inputType="textPassword"
+            android:layout_marginBottom="16dp" />
 
-        <Space
+        <!-- Confirm Password -->
+        <EditText
+            android:id="@+id/txt_passwordConfirm"
             android:layout_width="match_parent"
-            android:layout_height="15dp" />
+            android:layout_height="wrap_content"
+            android:hint="Confirmar contraseña"
+            android:textColorHint="@color/white"
+            android:inputType="textPassword"
+            android:layout_marginBottom="16dp" />
 
+        <!-- Document Type -->
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tipo de documento"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Document Number -->
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="N° de documento"
+            android:textColorHint="@color/white"
+            android:inputType="number"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Birth Date -->
+        <EditText
+            android:id="@+id/dt_fechaNacimiento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Fecha de Nacimiento (DD/MM/AAAA)"
+            android:textColorHint="@color/white"
+            android:inputType="date"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Phone Number -->
+        <EditText
+            android:id="@+id/txt_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Número de Celular"
+            android:textColorHint="@color/white"
+            android:inputType="phone"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Department -->
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Departamento"
+            android:textColorHint="@color/white"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Province -->
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Provincia"
+            android:layout_marginBottom="16dp" />
+
+        <!-- District -->
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Distrito"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Favorite Cineplanet -->
+        <Spinner
+            android:id="@+id/spinnerCineplanet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tu Cineplanet favorito"
+            android:textColorHint="@color/white"
+            android:layout_marginBottom="8dp" />
+
+
+        <!-- Gender -->
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Género"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:layout_marginBottom="8dp" />
+
+        <RadioGroup
+            android:id="@+id/rb_genero"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <RadioButton
+                android:id="@+id/rb_hombre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hombre"
+                android:textColor="@color/white"
+                android:layout_marginEnd="16dp" />
+
+            <RadioButton
+                android:id="@+id/rb_mujer"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="Mujer"
+                android:textColor="@color/white" />
+
+        </RadioGroup>
+
+        <!-- Terms and Conditions -->
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:text="Acepto los Términos y Condiciones y la Política de Privacidad"
+            android:textSize="14sp"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Additional Treatment -->
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:text="He leído y acepto las finalidades de tratamiento adicionales"
+            android:textSize="14sp"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Submit Button -->
         <Button
             android:id="@+id/btn_addUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Enviar" />
+            android:text="Unirme"
+            android:textColor="#FFFFFF"
+            android:background="#E91E63"
+            android:padding="12dp" />
+
     </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

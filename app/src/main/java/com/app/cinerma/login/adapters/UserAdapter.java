@@ -30,7 +30,6 @@ import java.lang.annotation.Documented;
 
 public class UserAdapter extends FirestoreRecyclerAdapter<User,UserAdapter.ViewHolder> {
 
-
     //variable privada
     private FirebaseFirestore mFirestore=FirebaseFirestore.getInstance();
     Activity activity;
@@ -44,59 +43,29 @@ public class UserAdapter extends FirestoreRecyclerAdapter<User,UserAdapter.ViewH
     @Override
     protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull User user) {
 
-        //
-        DocumentSnapshot documentedSnapshot=getSnapshots().getSnapshot(holder.getAdapterPosition());
-        final String id=documentedSnapshot.getId();
+
+        // Obtener el ID del documento
+        DocumentSnapshot documentSnapshot = getSnapshots().getSnapshot(holder.getAdapterPosition());
+        final String id = documentSnapshot.getId();
 
 
-
-
-        //Mostramos nuestros datos
+        // Mostrar los datos del usuario en la vista
         holder.name.setText(user.getName());
         holder.email.setText(user.getEmail());
         holder.password.setText(user.getPassword());
 
-        //Logic para Editar
-        holder.btn_editUser.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i =new Intent(activity, CreateUserActivity.class);
-                i.putExtra("id_User",id);
-                activity.startActivity(i);
-
-            }
+        // Lógica para editar el usuario
+        holder.btn_editUser.setOnClickListener(v -> {
+            Intent i = new Intent(activity, CreateUserActivity.class);
+            i.putExtra("id_User", id);
+            activity.startActivity(i);
         });
 
-        //Icono eliminar
-        holder.btn_eliminar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                //Funcion para eliminar un registro
-                userDelete(id);
-
-
-            }
-        });
-
+        // Lógica para eliminar el usuario
+        holder.btn_eliminar.setOnClickListener(v -> userDelete(id));
     }
 
-    //funtionality delete user data
-    public void userDelete(String id){
-        //logic delete
-        mFirestore.collection("User").document(id).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void unused) {
 
-                Toast.makeText(activity,"user delete successfull",Toast.LENGTH_SHORT).show();
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(activity,"Error",Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
 
     @NonNull
     @Override
@@ -108,20 +77,29 @@ public class UserAdapter extends FirestoreRecyclerAdapter<User,UserAdapter.ViewH
         //
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        //especificamos las variables para los datos de las personas
-        TextView name,email,password;
-        ImageView btn_eliminar,btn_editUser;
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        //Especificamos las variables para los datos de las personas
+        TextView name, email, password;
+        ImageView btn_eliminar, btn_editUser;
 
-        public ViewHolder(@NonNull View itemView){
+        public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            //obtenemos los datos de la la vista
-            name=itemView.findViewById(R.id.tvName);
-            email=itemView.findViewById(R.id.tvUsername);
-            password=itemView.findViewById(R.id.tvUserPassword);
-            btn_eliminar=itemView.findViewById(R.id.btn_delete);
-            btn_editUser=itemView.findViewById(R.id.btn_editUser);
+            // Referencias a las vistas
+            name = itemView.findViewById(R.id.tvName);
+            email = itemView.findViewById(R.id.tvUsername);
+            password = itemView.findViewById(R.id.tvUserPassword);
+            btn_eliminar = itemView.findViewById(R.id.btn_delete);
+            btn_editUser = itemView.findViewById(R.id.btn_editUser);
         }
+    }
+
+    //delete user data
+    private void userDelete(String id) {
+        mFirestore.collection("User").document(id).delete()
+                .addOnSuccessListener(aVoid ->
+                        Toast.makeText(activity, "Usuario eliminado con éxito", Toast.LENGTH_SHORT).show())
+                .addOnFailureListener(e ->
+                        Toast.makeText(activity, "Error al eliminar usuario: " + e.getMessage(), Toast.LENGTH_SHORT).show());
     }
 }

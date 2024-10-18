@@ -10,26 +10,13 @@
     <!-- Imagen de la película -->
     <ImageView
         android:id="@+id/movie_image"
-        android:layout_width="207dp"
-        android:layout_height="227dp"
+        android:layout_width="208dp"
+        android:layout_height="228dp"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <!-- Botón para ver horarios -->
-    <Button
-        android:id="@+id/view_button"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/movie_image"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="8dp"
-        android:text="DETALLES"
-        android:textColor="@color/white"
-        android:backgroundTint="@color/colorText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

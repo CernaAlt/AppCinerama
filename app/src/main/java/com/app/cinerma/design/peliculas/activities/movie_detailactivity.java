@@ -1,33 +1,41 @@
 package com.app.cinerma.design.peliculas.activities;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.app.cinerma.R;
-import com.app.cinerma.design.peliculas.Frament.SynopsisFragment;
 import com.app.cinerma.design.peliculas.adapters.MovieDetailPagerAdapter;
+import com.app.cinerma.design.peliculas.entities.CineHorarios;
 import com.app.cinerma.design.peliculas.entities.Movie;
+import com.app.cinerma.design.peliculas.entities.Pelicula;
 import com.app.cinerma.design.peliculas.services.MovieApi;
-import com.app.cinerma.login.activities.InicioSesionActivity;
-import com.app.cinerma.login.activities.RegisterActivity;
 import com.app.cinerma.network.RetrofitClient;
 import com.bumptech.glide.Glide;
+import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -35,116 +43,138 @@ import retrofit2.Response;
 
 public class movie_detailactivity extends AppCompatActivity {
 
-    //Declarar variables
-    private TextView txtStatus, peliculaTitle, generoHoraEdad, peliculaSinopsis;
-    private ImageView urlImagenDetail;
+    private FirebaseFirestore firestore;
+    private TextView peliculaTitle,
+            generoHoraEdad, peliculaSinopsis,directorMovie,disponibleMovie;
+    private ImageView url, urlTrailer;
+    private ChipGroup idiomaPelicula;
     private TabLayout tabPeliculas;
     private ViewPager2 viewPager;
-    private MovieApi movieApi;
-    private Button buttonVer; // Nueva variable para el botón
+    private List<CineHorarios> cinesHorarios;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.movie_detail_activity);
 
+        // Inicializar Firestore
+        firestore = FirebaseFirestore.getInstance();
 
-
+        // Inicializar vistas
         initViews();
 
-        // Configurar el adaptador del ViewPager
-        MovieDetailPagerAdapter pagerAdapter = new MovieDetailPagerAdapter(this);
-        viewPager.setAdapter(pagerAdapter);
+        // Inicializar la lista
+        cinesHorarios = new ArrayList<>();
 
-        // Conectar el TabLayout con el ViewPager
-        new TabLayoutMediator(tabPeliculas, viewPager,
-                (tab, position) -> {
-                    switch (position) {
-                        case 0:
-                            tab.setText("Otros");
-                            break;
-                        case 1:
-                            tab.setText("Cines");
-                            break;
-                    }
-                }).attach();
-
-        setupMovieApi();
-
-        int movieId = getIntent().getIntExtra("MOVIE_ID", -1);
-        if (movieId != -1) {
+        // Obtener ID de la película desde el Intent
+        String movieId = getIntent().getStringExtra("MOVIE_ID");
+        if (movieId != null) {
             fetchMovieDetails(movieId);
         } else {
-            Toast.makeText(this, "Error: No se pudo obtener el ID de la película", Toast.LENGTH_SHORT).show();
+            showErrorToast("Error: No se pudo obtener el ID de la película");
         }
+
+        // Configurar el ViewPager
+        setupViewPager();
+
     }
 
+    // Método para inicializar las vistas
     private void initViews() {
-        txtStatus = findViewById(R.id.txtStatus);
         peliculaTitle = findViewById(R.id.pelicula_title);
         generoHoraEdad = findViewById(R.id.genero_hora_edad);
-        urlImagenDetail = findViewById(R.id.urlImagenDetail);
-        peliculaSinopsis = findViewById(R.id.pelicula_sinopsis); // Nueva variable para la sinopsis
+        urlTrailer = findViewById(R.id.txt_urlTrailer);
+        peliculaSinopsis = findViewById(R.id.pelicula_sinopsis);
+        url = findViewById(R.id.img_url);
+        idiomaPelicula = findViewById(R.id.idioma_pelicula);
+        directorMovie=findViewById(R.id.director_name);
 
+        //disponible movie
+        disponibleMovie=findViewById(R.id.disponible_content);
+
+        //Configurar la pestaña de las peliculas
         tabPeliculas = findViewById(R.id.tab_peliculas);
         viewPager = findViewById(R.id.fragment_container_peliculas_detail);
 
-        // inicializer el buttón "Ver"
-        buttonVer = findViewById(R.id.btn_ver); // Asegúrate de que el ID sea correcto
+        //inicializar el boton de ver
+         Button buttonVer = findViewById(R.id.btn_ver);
 
-        //Agregamos la logica para el ir a otra actividad
-        buttonVer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(movie_detailactivity.this, buys01Activity.class));
-            }
-        });
+        if (buttonVer!= null) {
+            // Configura el listener del botón
+            buttonVer.setOnClickListener(view -> {
+                Intent intent = new Intent(movie_detailactivity.this, movie_selection_Activity.class);
+                startActivity(intent);
+            });
+        } else {
+            Log.e("Error", "El botón btnVer es nulo");
+        }
     }
 
-
-
-    private void setupMovieApi() {
-        movieApi = RetrofitClient.getRetrofitInstance().create(MovieApi.class);
-    }
-
-    private void fetchMovieDetails(int movieId) {
-        txtStatus.setText("Cargando...");
-
-        Call<List<Movie>> call = movieApi.getMovies();
-        call.enqueue(new Callback<List<Movie>>() {
-            @Override
-            public void onResponse(Call<List<Movie>> call, Response<List<Movie>> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    Movie selectedMovie = null;
-                    for (Movie movie : response.body()) {
-                        if (movie.getId() == movieId) {
-                            selectedMovie = movie;
-                            break;
+    private void fetchMovieDetails(String movieId) {
+        if (firestore != null) {
+            firestore.collection("peliculas").document(movieId).get()
+                    .addOnSuccessListener(documentSnapshot -> {
+                        if (documentSnapshot.exists()) {
+                            Pelicula pelicula = documentSnapshot.toObject(Pelicula.class);
+                            if (pelicula != null) {
+                                updateUI(pelicula);
+                            } else {
+                                showErrorToast("Película no encontrada");
+                            }
+                        } else {
+                            showErrorToast("Película no encontrada");
                         }
-                    }
-                    if (selectedMovie != null) {
-                        updateUI(selectedMovie);
-                    } else {
-                        Toast.makeText(movie_detailactivity.this, "Película no encontrada", Toast.LENGTH_SHORT).show();
-                    }
-                } else {
-                    Toast.makeText(movie_detailactivity.this, "Error al cargar los datos", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<Movie>> call, Throwable t) {
-                Toast.makeText(movie_detailactivity.this, "Error de red: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
+                    })
+                    .addOnFailureListener(e -> showErrorToast("Error al cargar los datos: " + e.getMessage()));
+        } else {
+            showErrorToast("Firestore no inicializado");
+        }
     }
 
-    private void updateUI(Movie movie) {
-        txtStatus.setText("Cargado");
-        peliculaTitle.setText(movie.getTitle());
-        generoHoraEdad.setText(String.format("%s / %s / %s", movie.getGenreMovie(), movie.getDurationMovie(), movie.getAge()));
-        peliculaSinopsis.setText(movie.getSinopsis()); // Actualizar la sinopsis
-        Glide.with(this).load(movie.getUrlImagenDetail()).into(urlImagenDetail);
+    private void updateUI(Pelicula pelicula) {
+        peliculaTitle.setText(pelicula.getTitle());
+        generoHoraEdad.setText(String.format("%s / %s / %s", pelicula.getGenre(), pelicula.getDurationMovie(), pelicula.getAge()));
+        peliculaSinopsis.setText(pelicula.getSinopsis());
+        directorMovie.setText(pelicula.getDirector());
+
+        Glide.with(this).load(pelicula.getUrlTrailer()).into(urlTrailer);
+        Glide.with(this).load(pelicula.getUrl()).into(url);
+
+        // Actualizar los idiomas en los chips
+        idiomaPelicula.removeAllViews();
+        if (pelicula.getIdioma() != null) {
+            for (String idioma : pelicula.getIdioma()) {
+                Chip chip = new Chip(this);
+                chip.setText(idioma);
+                chip.setTextColor(getResources().getColor(R.color.white));
+                chip.setChipBackgroundColorResource(R.color.black);
+                idiomaPelicula.addView(chip);
+            }
+        }
+
+        // Update the available movie formats
+        List<String> disponibleList = pelicula.getDisponible();
+        if (disponibleList != null) {
+            String disponibleText = joinListToString(disponibleList);
+            disponibleMovie.setText(disponibleText);
+        }
+    }
+
+    private String joinListToString(List<String> list) {
+        return list != null ? String.join(", ", list) : "";
+    }
+
+    private void showErrorToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+    private void setupViewPager() {
+        MovieDetailPagerAdapter pagerAdapter = new MovieDetailPagerAdapter(this);
+        viewPager.setAdapter(pagerAdapter);
+
+        new TabLayoutMediator(tabPeliculas, viewPager, (tab, position) -> {
+            if (position == 0) tab.setText("La función perfecta para ti.");
+            else tab.setText("Cines");
+        }).attach();
     }
 }

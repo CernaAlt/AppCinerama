@@ -57,40 +57,40 @@ dependencies {
     implementation 'com.google.android.gms:play-services-maps:18.1.0'
     implementation 'com.google.android.gms:play-services-location:21.0.1'
 
-    //resaicler
+//recycler
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
 
-    //Para el carrusel de imagenes debemos tener esta dependecia
+//Para el carrusel de imágenes debemos tener esta dependencia
     implementation 'org.imaginativeworld.whynotimagecarousel:whynotimagecarousel:2.1.0'
 
-    // Retrofit
+// Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 
-    // Glide (para cargar imágenes)
+// Glide (para cargar imágenes)
     implementation 'com.github.bumptech.glide:glide:4.12.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
 
-
-    //Animacion para la carga de framentos
+//Animación para la carga de fragmentos
     implementation 'com.facebook.shimmer:shimmer:0.5.0'
 
-    //viewpager2
+//viewpager2
     implementation 'androidx.viewpager2:viewpager2:1.0.0'
     implementation 'com.google.android.material:material:1.4.0'
 
-    //firebase
-    // Import the Firebase BoM
+//firebase
+// Import the Firebase BoM
     implementation platform('com.google.firebase:firebase-bom:33.3.0')
-
     implementation 'com.google.firebase:firebase-auth:21.0.1'
     implementation 'com.google.firebase:firebase-firestore:24.5.0' // Use the latest version
     implementation 'com.firebaseui:firebase-ui-firestore:8.0.2'
 
-    //design
+    implementation 'com.google.android.gms:play-services-auth:20.7.0'  // o la versión más reciente que uses
+
+//design
     implementation 'com.google.android.material:material:1.5.0'
 
-
+    implementation 'com.google.android.gms:play-services-auth:19.2.0'
 }
 
 

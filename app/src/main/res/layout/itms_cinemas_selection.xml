@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/colorFondo"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- titulo cines -->
+    <TextView
+        android:id="@+id/txt_cineTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="CP Alcazar"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"/>
+
+    <!-- idiomas cines -->
+    <LinearLayout
+        android:id="@+id/idiomas_cine"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp">
+        <!-- Dynamic content will be added here -->
+    </LinearLayout>
+
+    <!-- horarios cines -->
+    <GridLayout
+        android:id="@+id/horarios_cine"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="2"
+        android:rowCount="2"
+        android:layout_marginTop="8dp">
+        <!-- Dynamic content will be added here -->
+    </GridLayout>
+</LinearLayout>

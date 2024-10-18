@@ -11,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.app.cinerma.R;
+import com.app.cinerma.design.peliculas.activities.movie_detailactivity;
+import com.app.cinerma.design.peliculas.activities.movie_selection_Activity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -56,7 +58,7 @@ public class InicioSesionActivity extends AppCompatActivity {
         btnUnete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(InicioSesionActivity.this, RegisterActivity.class));
+                startActivity(new Intent(InicioSesionActivity.this, CreateUserActivity.class));
             }
         });
     }
@@ -66,7 +68,7 @@ public class InicioSesionActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    startActivity(new Intent(InicioSesionActivity.this, loginActivity.class));
+                    startActivity(new Intent(InicioSesionActivity.this, movie_detailactivity.class));
                     finish();
                     Toast.makeText(InicioSesionActivity.this, "Bienvenido", Toast.LENGTH_SHORT).show();
                 } else {

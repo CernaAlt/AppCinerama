@@ -34,7 +34,6 @@ import com.app.cinerma.design.cines.entities.City;
 import com.app.cinerma.design.cines.services.ICineApi;
 import com.app.cinerma.design.cines.services.ICityApi;
 import com.app.cinerma.design.cines.services.IFiltroCity;
-import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -55,12 +54,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link CinesFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class CinesFragment extends Fragment implements IFiltroCity,OnMapReadyCallback  {
 
 
