@@ -15,7 +15,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.cinerma.R;
-import com.app.cinerma.design.peliculas.adapters.MovieDetailAdapter;
 import com.app.cinerma.login.Domain.User;
 import com.app.cinerma.login.activities.CreateUserActivity;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;

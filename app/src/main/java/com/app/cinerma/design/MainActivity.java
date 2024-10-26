@@ -13,9 +13,9 @@ import androidx.fragment.app.FragmentTransaction;
 import com.app.cinerma.R;
 import com.app.cinerma.databinding.ActivityMainBinding;
 import com.app.cinerma.design.cines.frament.CinemaFragment;
-import com.app.cinerma.design.cines.frament.CinesFragment;
 import com.app.cinerma.design.peliculas.MoviesFragment;
 import com.app.cinerma.design.start.MainHomeFragment;
+import com.app.cinerma.dulceria.SnackFragment;
 import com.app.cinerma.login.activities.InicioSesionActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -46,7 +46,10 @@ public class MainActivity extends AppCompatActivity {
                 replaceFragment(new MoviesFragment());
             }
             if(item.getItemId()==R.id.cinemaM){
-                replaceFragment(new CinemaFragment());
+                replaceFragment(new CinemaFragment() );
+            }
+            if(item.getItemId()==R.id.foodM){
+                replaceFragment(new SnackFragment());
             }
             return true;
         });

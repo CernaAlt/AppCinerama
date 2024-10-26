@@ -18,16 +18,12 @@ public class movie_selection_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_selection);
 
-
         //Mostrar el framento de butaca_selection llamos al metodo
         mostrarButacaSelection();
 
     }
 
-
-
-
-    //Metodo para mostrar el fragmento de butaca_selection
+    // Metodo para mostrar el fragmento de butaca_selection
     public void mostrarButacaSelection(){
         getSupportFragmentManager().beginTransaction()  //recuperamos el fragmenManager para interactuar con los fragments de la actividad
                 .replace(R.id.fragment_container, new butaca_selection_Fragment()) //reemplazamos el fragmento actual por el fragmento de butaca_selection

@@ -2,9 +2,6 @@
 <resources>
 
 
-
-
-
     <!--Gama de colores cinerama-->
     <color name="colorFondo">#0f172a</color>
     <color name="coloSuperior">#274481</color>

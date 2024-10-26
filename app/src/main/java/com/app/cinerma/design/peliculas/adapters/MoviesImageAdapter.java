@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import androidx.recyclerview.widget.RecyclerView;
 import com.app.cinerma.R;
 import com.app.cinerma.design.peliculas.activities.movie_detailactivity;
-import com.app.cinerma.design.peliculas.entities.Pelicula;
+import com.app.cinerma.design.peliculas.entities.Movie;
 import com.bumptech.glide.Glide;
 import java.util.List;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -18,12 +18,12 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class MoviesImageAdapter extends RecyclerView.Adapter<MoviesImageAdapter.ViewHolder>{
     //Declaramos las variables
-    List<Pelicula> movies;
+    List<Movie> movies;
     Context context;
-    FirebaseFirestore firestore;
 
+    //FirebaseFirestore firestore;
     //
-    public MoviesImageAdapter(List<Pelicula> movies, Context context) {
+    public MoviesImageAdapter(List<Movie> movies, Context context) {
         this.movies = movies;
         this.context=context;
     }
@@ -38,9 +38,9 @@ public class MoviesImageAdapter extends RecyclerView.Adapter<MoviesImageAdapter.
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Pelicula movie = movies.get(position);
+        Movie movie = movies.get(position);
 
-        // Cargar la imagen usando Glide o Picasso
+        // Cargar la imagen usando Glide
         Glide.with(context)
                 .load(movie.getUrl())  // Asegúrate de que el campo `url` existe
                 .into(holder.imageView);
@@ -52,8 +52,6 @@ public class MoviesImageAdapter extends RecyclerView.Adapter<MoviesImageAdapter.
             context.startActivity(intent);
         });
     }
-
-
 
     @Override
     public int getItemCount() {

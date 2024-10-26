@@ -24,10 +24,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CinemaFragment extends Fragment {
-
+    //Instanciamos la base de datos de firestore
     private FirebaseFirestore firestore;
-    private RecyclerView cinemaRecyclerView;
-    private CinemaSelecionAdapter cinemaAdapter;
+    //Instanciamos el RecyclerView del nuestro Xml
+    private RecyclerView verCine;
+    //Instanciamos el adaptador de nuestro RecyclerView
+    private CinemaAdapter cinemaAdapter;
+    //Instanciamos una lista de cines
     private List<Cinema> cinemaList;
 
     @Override
@@ -38,48 +41,55 @@ public class CinemaFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment__cine_selection, container, false);
+        //
+        View view = inflater.inflate(R.layout.fragment_cinema, container, false);
 
+        //Instanciamos la base de datos de firestore
         firestore = FirebaseFirestore.getInstance();
-        cinemaRecyclerView = view.findViewById(R.id.rv_cinemas);
-        cinemaRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        //Instanciamos el RecyclerView del nuestro Xml
+        verCine = view.findViewById(R.id.ryv_mostrarCine);
+        //Configuramos el RecyclerView
+        verCine.setLayoutManager(new LinearLayoutManager(getContext()));
 
+        //
         cinemaList = new ArrayList<>();
-        cinemaAdapter = new CinemaSelecionAdapter(cinemaList);
-        cinemaRecyclerView.setAdapter(cinemaAdapter);
+        cinemaAdapter = new CinemaAdapter(cinemaList);
+        verCine.setAdapter(cinemaAdapter);
 
         fetchCinemas();
-
         return view;
     }
 
-
-
-
-
-
+    //Método para obtener los cines
     private void fetchCinemas() {
+        //Limpiamos la lista de cines
         cinemaList.clear();
-        cinemaAdapter.notifyDataSetChanged();
-
+        //Obtenemos los cines de la base de datos
         firestore.collection("cines")
+                //Añadimos un listener para obtener los cines
                 .addSnapshotListener((queryDocumentSnapshots, e) -> {
+                    //Si hay un error al obtener los cines
                     if (e != null) {
                         Toast.makeText(getContext(), "Error al cargar los cines: " + e.getMessage(), Toast.LENGTH_LONG).show();
                         return;
                     }
-
+                    //Si se obtienen los cines
                     if (queryDocumentSnapshots != null && !queryDocumentSnapshots.isEmpty()) {
+                       //Limpiamos la lista de cines
                         cinemaList.clear();
-
+                        //Recorremos los documentos de la colección y los convertimos en objetos Cinema
                         for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                            //Convertimos el documento en un objeto Cinema
                             Cinema cinema = document.toObject(Cinema.class);
+                            //Añadimos el cine a la lista
                             cinemaList.add(cinema);
                         }
-
+                        //Notificamos al adaptador que los datos han cambiado
                         cinemaAdapter.notifyDataSetChanged();
+
                     } else {
-                        Toast.makeText(getContext(), "No se encontraron cines.", Toast.LENGTH_SHORT).show();
+                        //Si no se encuentran cines
+                        Toast.makeText(getContext(), "null.", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
