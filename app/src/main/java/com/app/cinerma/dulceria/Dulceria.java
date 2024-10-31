@@ -8,7 +8,7 @@ public class Dulceria {
     private String title;
     private List<String> description;
     private String cost;
-    private String category;
+    private String category; //Falta usarlo
 
     private String urlImage;
 

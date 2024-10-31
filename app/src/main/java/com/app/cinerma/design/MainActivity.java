@@ -13,6 +13,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.app.cinerma.R;
 import com.app.cinerma.databinding.ActivityMainBinding;
 import com.app.cinerma.design.cines.frament.CinemaFragment;
+import com.app.cinerma.design.peliculas.Frament.payment_summary_Fragment;
 import com.app.cinerma.design.peliculas.MoviesFragment;
 import com.app.cinerma.design.start.MainHomeFragment;
 import com.app.cinerma.dulceria.SnackFragment;

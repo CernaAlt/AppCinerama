@@ -14,20 +14,18 @@ import android.widget.VideoView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager2.widget.ViewPager2;
 
 import com.app.cinerma.R;
 import com.app.cinerma.design.cines.adapters.CinemaSelecionAdapter;
 import com.app.cinerma.design.cines.entities.CineHorario;
-import com.app.cinerma.design.peliculas.adapters.MovieDetailPagerAdapter;
+import com.app.cinerma.design.cines.entities.Cines;
+import com.app.cinerma.design.cines.services.CinesApi;
 import com.app.cinerma.design.peliculas.entities.Movie;
 import com.app.cinerma.design.peliculas.services.MovieApi;
 import com.app.cinerma.network.RetrofitClient;
 import com.bumptech.glide.Glide;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
-import com.google.android.material.tabs.TabLayout;
-import com.google.android.material.tabs.TabLayoutMediator;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -39,25 +37,21 @@ import retrofit2.Response;
 
 public class movie_detailactivity extends AppCompatActivity {
 
-    //private FirebaseFirestore firestore;
-
-    private TextView peliculaTitle,
-            generoHoraEdad,
-            peliculaSinopsis,
-            directorMovie,
-            disponibleMovie;
+   // Declaramos variables
+    private TextView peliculaTitle, generoHoraEdad, peliculaSinopsis, directorMovie, disponibleMovie;
 
     private ImageView url;
     VideoView urlTrailer;
     private ChipGroup idiomaPelicula;
-    private TabLayout tabPeliculas;
-    private ViewPager2 viewPager;
+
+    private List<CineHorario> cinesHorarios;
 
     //Traemos el adapter de CinemaSelecionAdapter
-    //private CinemaSelecionAdapter cinemaSelecionAdapter;
-    //private List<CineHorarios> cinesHorarios;
+    /*
+    private RecyclerView recyclerView;
+    private CinemaSelecionAdapter cinemaSelecionAdapter;
+    private List<Cines> cinesList;*/
 
-    //private MovieDetailAdapter movieAdapter;
 
 
     @Override
@@ -71,8 +65,7 @@ public class movie_detailactivity extends AppCompatActivity {
         //Inicialimos movieApi
         //MovieApi movieApi = RetrofitClient.getRetrofitInstance().create(MovieApi.class);
 
-        // Inicializar vistas
-        initViews();
+
 
         // Inicializar la lista
         //cinesHorarios = new ArrayList<>();
@@ -85,6 +78,19 @@ public class movie_detailactivity extends AppCompatActivity {
             showErrorToast("Error: No se pudo obtener el ID de la película");
         }*/
 
+        //Configuraciones  el recyclerView en donde vamos a mostrar los cines
+        /*recyclerView = findViewById(R.id.ryv_mostrarCine);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        //Configuramos el adaptador con la lista inicial
+        cinemaSelecionAdapter = new CinemaSelecionAdapter(cinesList);*/
+
+        //Metodo hacer una llamada a la API para obtener los cines
+        //fetchCines();
+
+
+        // Inicializar vistas
+        initViews();
 
         // Obtener el ID de la pelicula pasado desde la actividad anterior
         String movieId = getIntent().getStringExtra("MOVIE_ID");
@@ -93,9 +99,28 @@ public class movie_detailactivity extends AppCompatActivity {
 
         HorarioData();
 
-        // Configurar el ViewPager
-        setupViewPager();
     }
+
+    /*private void fetchCines() {
+        CinesApi movieApi = RetrofitClient.getRetrofitInstance().create(CinesApi.class);
+        Call<List<Cines>> call = movieApi.getCines();
+        call.enqueue(new Callback<List<Cines>>() {
+            @Override
+            public void onResponse(Call<List<Cines>> call, Response<List<Cines>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    cinesList = response.body();
+                    cinemaSelecionAdapter.notifyDataSetChanged();
+                } else {
+                    Log.e(TAG, "Response unsuccessful or body is null");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Cines>> call, Throwable t) {
+                Log.e(TAG, "Error fetching cines: " + t.getMessage());
+            }
+        });
+    }*/
 
     private void HorarioData() {
         MovieApi movieApi = RetrofitClient.getRetrofitInstance().create(MovieApi.class);
@@ -139,7 +164,6 @@ public class movie_detailactivity extends AppCompatActivity {
         });
     }
 
-
     // Método para inicializar las vistas
     private void initViews() {
         peliculaTitle = findViewById(R.id.pelicula_title);
@@ -150,8 +174,6 @@ public class movie_detailactivity extends AppCompatActivity {
         idiomaPelicula = findViewById(R.id.idioma_pelicula);
         directorMovie = findViewById(R.id.director_name);
         disponibleMovie = findViewById(R.id.disponible_content);
-        tabPeliculas = findViewById(R.id.tab_peliculas);
-        viewPager = findViewById(R.id.fragment_container_peliculas_detail);
 
         Button buttonVer = findViewById(R.id.btn_ver);
         if (buttonVer != null) {
@@ -163,8 +185,6 @@ public class movie_detailactivity extends AppCompatActivity {
             Log.e("Error", "El botón btnVer es nulo");
         }
     }
-
-
 
     // Llamada a la API para obtener detalles de la película
     private void fetchMovieDetails(String movieId) {
@@ -231,27 +251,6 @@ public class movie_detailactivity extends AppCompatActivity {
     }
 
 
-    /*private void fetchMovieDetails(String movieId) {
-        if (firestore != null) {
-            firestore.collection("peliculas").document(movieId).get()
-                    .addOnSuccessListener(documentSnapshot -> {
-                        if (documentSnapshot.exists()) {
-                            Pelicula pelicula = documentSnapshot.toObject(Pelicula.class);
-                            if (pelicula != null) {
-                                updateUI(pelicula);
-                            } else {
-                                showErrorToast("Película no encontrada");
-                            }
-                        } else {
-                            showErrorToast("Película no encontrada");
-                        }
-                    })
-                    .addOnFailureListener(e -> showErrorToast("Error al cargar los datos: " + e.getMessage()));
-        } else {
-            showErrorToast("Firestore no inicializado");
-        }
-    }*/
-
     private void updateUI(Movie movie) {
         peliculaTitle.setText(movie.getTitle());
         peliculaSinopsis.setText(movie.getSinopsis());
@@ -290,13 +289,4 @@ public class movie_detailactivity extends AppCompatActivity {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
-    //Mostramos los cines y horarios
-    private void setupViewPager() {
-        MovieDetailPagerAdapter pagerAdapter = new MovieDetailPagerAdapter(this);
-        viewPager.setAdapter(pagerAdapter);
-
-        new TabLayoutMediator(tabPeliculas, viewPager, (tab, position) -> {
-            if (position == 0) tab.setText("LA FUNCION PERFECTA PARA TI.");
-        }).attach();
-    }
 }

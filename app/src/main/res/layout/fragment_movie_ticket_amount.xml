@@ -34,6 +34,7 @@ tools:context=".design.peliculas.Frament.ticket_amount_Fragment">
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Entradas generales"
+        android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -52,32 +53,34 @@ tools:context=".design.peliculas.Frament.ticket_amount_Fragment">
             android:layout_marginBottom="16dp">
 
             <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_width="208dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/txt_type_general"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="General 2D OL"
                     android:textColor="@color/white"
 
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:text="Incluye servicio online"/>
+                    android:text="Incluye servicio online"
+                    android:textColor="@color/white" />
 
 
                 <TextView
+                    android:id="@+id/txt_price_general"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
                     android:text="S/34.00"
-                    android:textStyle="bold"/>
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
@@ -86,26 +89,28 @@ tools:context=".design.peliculas.Frament.ticket_amount_Fragment">
                 android:orientation="horizontal">
 
                 <Button
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:text="-"
-                    android:textSize="18sp"/>
+                    android:id="@+id/btn_increment_general"
+                    android:layout_width="58dp"
+                    android:layout_height="65dp"
+                    android:text="+"
+                    android:textSize="18sp" />
 
                 <TextView
+                    android:id="@+id/txt_general_amount"
                     android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:text="0"
-
-                    android:textColor="@color/white"
+                    android:layout_height="65dp"
                     android:gravity="center"
-                    android:textSize="18sp"/>
+                    android:text="0"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
 
                 <Button
-                    android:layout_width="40dp"
+                    android:id="@+id/btn_decrement_general"
+                    android:layout_width="56dp"
+                    android:layout_height="match_parent"
+                    android:text="-"
                     android:textColor="@color/white"
-                    android:layout_height="40dp"
-                    android:text="+"
-                    android:textSize="18sp"/>
+                    android:textSize="18sp" />
             </LinearLayout>
         </LinearLayout>
 
@@ -123,6 +128,7 @@ tools:context=".design.peliculas.Frament.ticket_amount_Fragment">
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/txt_type_child"
                     android:layout_width="wrap_content"
                     android:textColor="@color/white"
                     android:layout_height="wrap_content"
@@ -146,8 +152,9 @@ tools:context=".design.peliculas.Frament.ticket_amount_Fragment">
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="S/32.00 Precio más bajo"
+                    android:id="@+id/txt_price_child"
                     android:textStyle="bold"
-                    android:textColor="#008000"/>
+                    android:textColor="@color/colorText"/>
             </LinearLayout>
 
             <LinearLayout
@@ -156,24 +163,27 @@ tools:context=".design.peliculas.Frament.ticket_amount_Fragment">
                 android:orientation="horizontal">
 
                 <Button
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:text="-"
-                    android:textSize="18sp"/>
+                    android:id="@+id/btn_increment_child"
+                    android:layout_width="58dp"
+                    android:layout_height="76dp"
+                    android:text="+"
+                    android:textSize="18sp" />
 
                 <TextView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:id="@+id/txt_child_amount"
+                    android:layout_width="41dp"
+                    android:layout_height="76dp"
+                    android:gravity="center"
                     android:text="0"
                     android:textColor="@color/white"
-                    android:gravity="center"
-                    android:textSize="18sp"/>
+                    android:textSize="18sp" />
 
                 <Button
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:text="+"
-                    android:textSize="18sp"/>
+                    android:id="@+id/btn_decrement_child"
+                    android:layout_width="55dp"
+                    android:layout_height="76dp"
+                    android:text="-"
+                    android:textSize="18sp" />
             </LinearLayout>
         </LinearLayout>
 
@@ -185,29 +195,32 @@ tools:context=".design.peliculas.Frament.ticket_amount_Fragment">
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/txt_type_senor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Mayores 60 años 2D OL"
                     android:textColor="@color/white"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:text="Incluye servicio online."/>
+                    android:text="Incluye servicio online."
+                    android:textColor="@color/white" />
 
                 <TextView
+                    android:id="@+id/txt_price_senor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="S/32.00 Precio más bajo"
-                    android:textStyle="bold"
-                    android:textColor="#008000"/>
+                    android:textColor="@color/colorText"
+
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
@@ -216,28 +229,41 @@ tools:context=".design.peliculas.Frament.ticket_amount_Fragment">
                 android:orientation="horizontal">
 
                 <Button
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:text="-"
-                    android:textSize="18sp"/>
+                    android:id="@+id/btn_increment_senior"
+                    android:layout_width="55dp"
+                    android:layout_height="70dp"
+                    android:text="+"
+                    android:textSize="18sp" />
 
                 <TextView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:text="1"
+                    android:id="@+id/txt_senior_amount"
+                    android:layout_width="45dp"
+                    android:layout_height="70dp"
                     android:gravity="center"
-                    android:textSize="18sp"/>
+                    android:text="0"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
 
                 <Button
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:id="@+id/btn_decrement_senior"
+                    android:layout_width="53dp"
+                    android:layout_height="70dp"
+                    android:text="-"
                     android:textColor="@color/white"
-                    android:text="+"
-                    android:textSize="18sp"/>
+                    android:textSize="18sp" />
             </LinearLayout>
+
+
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/txt_remaining_seats"
+            android:layout_width="match_parent"
+            android:layout_marginTop="16dp"
+            android:layout_height="29dp"
+            android:textAlignment="center"
+            android:textColor="@color/colorText"
+            android:textStyle="bold" />
     </LinearLayout>
-
 </LinearLayout>
 </ScrollView>

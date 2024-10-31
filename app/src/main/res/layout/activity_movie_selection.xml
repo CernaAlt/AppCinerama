@@ -51,32 +51,68 @@
             android:orientation="vertical"
             android:padding="20dp">
 
+            <!-- Spinner para seleccionar ciudad -->
             <TextView
-                android:id="@+id/txt_titleMovie"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Robot Salvaje"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:textColor="@color/white" />
+                android:text="Seleccione una ciudad: " />
 
+            <Spinner
+                android:id="@+id/spinner_city"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp" />
+
+            <!-- Spinner para seleccionar ciudad -->
             <TextView
-                android:id="@+id/txt_cinemaDatos"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Seleccione una pelicula: " />
+
+            <Spinner
+                android:id="@+id/spinner_movie"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"/>
+
+            <!-- Spinner para seleccionar cine -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Seleccione un cine:" />
+
+            <Spinner
+                android:id="@+id/spinner_cinema"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
                 android:text="CP Alcazar, SALA 5 | 2D, REGULAR |"
-                android:textSize="14sp"
-                android:textColor="@color/white"
-                android:layout_marginTop="4dp" />
+                android:layout_margin="8dp"/>
 
+            <!-- Spinner para seleccionar dia horario -->
             <TextView
-                android:id="@+id/txt_fechaHora"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Seleccione un fecha y hora:" />
+
+            <Spinner
+                android:id="@+id/spinner_hora"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
                 android:text="Hoy, 12 de Octubre de 2024 | 02:00 pm"
-                android:textSize="14sp"
-                android:textColor="@color/white"
-                android:layout_marginTop="4dp" />
+                android:layout_margin="8dp" />
+
+            <!-- Spinner para seleccionar dia  -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Seleccione un dia" />
+
+            <Spinner
+                android:id="@+id/spinner_dia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="Hoy, 12 de Octubre de 2024" />
 
             <TextView
                 android:id="@+id/txt_duracionCompra"
@@ -89,17 +125,66 @@
                 android:drawableStart="@drawable/ic_clock"
                 android:drawablePadding="4dp" />
 
-            <!--Mostramos los framentos de cada actividad-->
+
+
+            <!-- Contenedor-->
             <FrameLayout
-                android:id="@+id/fragment_container"
+                android:id="@+id/seat_selection_container"
+                android:layout_width="wrap_content"
+                android:layout_height="502dp">
+
+                <!-- Cuadrícula de asientos personalizada -->
+                <com.app.cinerma.design.peliculas.activities.SeatSelectionView
+                    android:id="@+id/seat_selection_view"
+                    android:layout_width="310dp"
+                    android:layout_height="424dp"
+                    android:layout_margin="16dp" />
+
+            </FrameLayout>
+
+
+
+            <!--Visular el codigo de asiento seleccionado -->
+            <LinearLayout
+                android:layout_width="332dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <!-- Botón para confirmar la reserva -->
+                <TextView
+                    android:id="@+id/selectedSeatTextView"
+                    android:layout_width="369dp"
+                    android:layout_height="match_parent"
+                    android:paddingBottom="16dp"
+                    android:text="Butaca seleccionada: "
+                    android:textColor="@color/colorText"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <!-- Botón para confirmar la reserva -->
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:background="@color/colorFondo"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/txt_duracionCompra" />
+                android:orientation="vertical"
+                android:layout_marginTop="16dp">
+
+
+
+                <Button
+                    android:id="@+id/btn_accion"
+                    android:layout_width="373dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorText"
+                    android:padding="8dp"
+                    android:text="Reservar butacas "
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white" />
+
+            </LinearLayout>
+
+
 
             <View
                 android:layout_width="match_parent"

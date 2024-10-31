@@ -10,8 +10,8 @@
     <!-- Imagen de la película -->
     <ImageView
         android:id="@+id/movie_image"
-        android:layout_width="208dp"
-        android:layout_height="228dp"
+        android:layout_width="207dp"
+        android:layout_height="260dp"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

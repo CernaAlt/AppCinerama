@@ -1,6 +1,7 @@
 package com.app.cinerma.dulceria;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,24 +52,45 @@ public class DulceriaAdapter extends RecyclerView.Adapter<DulceriaAdapter.ViewHo
         // Set other data to the views if needed
         holder.title.setText(dulceria.getTitle());
         holder.cost.setText(dulceria.getCost());
-        holder.category.setText(dulceria.getCategory());
+
+        //Obtenermos la lista de descripciones de cada combo
+        List<String> description = dulceria.getDescription();
+        if(description!=null && !description.isEmpty()){
+            StringBuilder sb = new StringBuilder();
+            for (String s : description) {
+                sb.append(s).append("\n");
+            }
+            holder.description.setText(sb.toString());
+
+            holder.description.setText(description.toString().trim());  // Trim para eliminar el último salto de línea
+        }else {
+            holder.description.setText("No description available");
+        }
+
+        Log.d("DulceriaAdapter", "Tamaño total de la lista: " + dulceriaList.size());
+
+
     }
 
     @Override
     public int getItemCount() {
         return dulceriaList != null ? dulceriaList.size() : 0;
+
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView imageView;
-        TextView title, cost, category;
+        TextView title, cost, description;
+
+        //Falta usar la categoria
+        
 
         public ViewHolder(View view) {
             super(view);
             imageView = view.findViewById(R.id.img_Combo);
             title = view.findViewById(R.id.combo_title);
             cost = view.findViewById(R.id.txt_cost);
-            category = view.findViewById(R.id.combo_description);
+            description = view.findViewById(R.id.combo_description);
         }
     }
 }

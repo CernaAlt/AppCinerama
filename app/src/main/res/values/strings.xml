@@ -20,4 +20,24 @@
     </string-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+
+    <string-array name="credit_card_providers_array">
+        <item>BCP</item>
+        <item>Interbank</item>
+        <item>Mi Banco</item>
+        <item>Scotiabank</item>
+        <item>BBVA</item>
+    </string-array>
+    <string-array name="app_agora_options_array">
+        <item>Option 1</item>
+        <item>Option 2</item>
+        <item>Option 3</item>
+    </string-array>
+    <string-array name="e_wallet_options_array">
+        <item>Yape</item>
+        <item>Plin</item>
+        <item>Other</item>
+    </string-array>
 </resources>
