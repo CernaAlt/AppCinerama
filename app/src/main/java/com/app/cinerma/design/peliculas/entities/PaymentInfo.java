@@ -1,11 +1,17 @@
 package com.app.cinerma.design.peliculas.entities;
 
+import java.util.UUID;
+
 public class PaymentInfo {
+    private String id;
     private String nombre;
     private String email;
     private String metodoPago;
     private String opcionSecundaria; // Para la opción seleccionada en el spinner
     private double total;
+
+    public PaymentInfo() {
+    }
 
     // Constructor
     public PaymentInfo(String nombre, String email, String metodoPago, String opcionSecundaria, double total) {
@@ -14,9 +20,19 @@ public class PaymentInfo {
         this.metodoPago = metodoPago;
         this.opcionSecundaria = opcionSecundaria;
         this.total = total;
+        this.id= UUID.randomUUID().toString();
     }
 
     // Getters y Setters
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public String getNombre() { return nombre; }
     public void setNombre(String nombre) { this.nombre = nombre; }
 

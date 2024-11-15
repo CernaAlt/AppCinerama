@@ -1,13 +1,17 @@
 package com.app.cinerma.design.peliculas.activities;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -45,8 +49,7 @@ public class movie_selection_Activity extends AppCompatActivity implements ticke
     private List<Cines> cines;
     // Variables para los spinner del xml
     private Spinner spinnerCity,spinnerMovie,spinnerCines,spinnerHora,spinnerDate;
-    //Variable button para guardar la reserva
-    private Button saveButton;
+
     // Texto para mostrar la butaca seleccionada
     private TextView selectedSeatTextView;
 
@@ -123,7 +126,12 @@ public class movie_selection_Activity extends AppCompatActivity implements ticke
 
 
 
-
+        // Instanciamos el boton de nuestro xml
+        ImageButton btnClose = findViewById(R.id.btn_close);
+        btnClose.setOnClickListener(v -> {
+            // Cierra la actividad
+            finish();
+        });
     }
 
     // Implementación de la interfaz para recibir notificación desde el fragmento
@@ -166,12 +174,10 @@ public class movie_selection_Activity extends AppCompatActivity implements ticke
     }
 
 
-
-
     // Metodo para mostrar la ciudad seleccionada
     private void showCity() {
         // Lógica para mostrar la ciudad seleccionada
-        String[] cities={"Bogotá","Medellín","Cali","Barranquilla","Cartagena"};
+        String[] cities={"Cajamarca","Lima","Trujillo","Cusco","Piura"};
 
         // Configuramos el adaptador para el spinner de ciudades
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, cities);
@@ -302,7 +308,6 @@ public class movie_selection_Activity extends AppCompatActivity implements ticke
         });
     }
 
-
     /*********************************************************************************************************************/
     /**************************************************Metodos para obtner los datos de los framents************************/
     // Obtener el tipo de boleto seleccionado
@@ -350,8 +355,6 @@ public class movie_selection_Activity extends AppCompatActivity implements ticke
         return new ArrayList<>();
     }
 
-
-
     /******************************************************Guardamos los datos en realDatabase(firebase)**********************************************/
     // Método para guardar los datos de la reserva
     private void saveReservationData() {
@@ -386,11 +389,13 @@ public class movie_selection_Activity extends AppCompatActivity implements ticke
 
 
         // Guardar los datos en Firebase
-        saveDataFarebase(selectedCity, selectedMovie, selectedCinema, selectedHour, selectedDate, selectedSeat, selectedTickets, selectedPayments);
+        saveDataFirebase(this,selectedCity, selectedMovie, selectedCinema, selectedHour, selectedDate, selectedSeat, selectedTickets, selectedPayments);
     }
 
 
-    private void saveDataFarebase(String selectedCity,
+    // Método para guardar los datos de la reserva en Firebase
+    private void saveDataFirebase(Context context,
+                                  String selectedCity,
                                   String selectedMovie,
                                   String selectedCinema,
                                   String selectedHour,
@@ -398,31 +403,51 @@ public class movie_selection_Activity extends AppCompatActivity implements ticke
                                   String selectedSeat,
                                   List<Ticket> selectedTickets,
                                   List<PaymentInfo> selectedPayments) {
-        // Crear la instancia de reserva con los datos seleccionados
-        Reserva reserva = new Reserva(
-                selectedCity,
-                selectedMovie,
-                selectedCinema,
-                selectedHour,
-                selectedDate,
-                selectedSeat,
-                selectedTickets,
-                selectedPayments
-        );
-
         // Referencia de Firebase
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference reservasRef = database.getReference("reservas");
 
-        // Generar ID único para la reserva y guardar los datos
+        // Generar un ID único
         String reservaId = reservasRef.push().getKey();
+
         if (reservaId != null) {
+            // Crear la instancia de reserva con el ID generado
+            Reserva reserva = new Reserva(
+                    reservaId, // Aquí se asigna el ID único
+                    selectedCity,
+                    selectedMovie,
+                    selectedCinema,
+                    selectedHour,
+                    selectedDate,
+                    selectedSeat,
+                    selectedTickets,
+                    selectedPayments
+            );
+
+            // Guardar la reserva usando `reservaId` como clave
             reservasRef.child(reservaId).setValue(reserva)
-                    .addOnSuccessListener(aVoid -> Log.d("Firebase", "Reserva guardada correctamente"))
-                    .addOnFailureListener(e -> Log.e("Firebase", "Error al guardar la reserva", e));
+                    .addOnSuccessListener(aVoid -> {
+                        Log.d("Firebase", "Reserva guardada correctamente");
+
+                        // Verifica que el contexto no sea nulo
+                        if (context != null) {
+                            // Mostrar mensaje de éxito al usuario
+                            Toast.makeText(context, "Reserva registrada exitosamente", Toast.LENGTH_SHORT).show();
+
+                            // Crear el Intent y pasar el `reservaId` a la siguiente actividad
+                            Intent intent = new Intent(context, ConfirmacionPagoActivity.class);
+                            intent.putExtra("RESERVA_ID", reservaId);
+                            context.startActivity(intent);
+                        }
+                    })
+                    .addOnFailureListener(e -> {
+                        Log.e("Firebase", "Error al guardar la reserva", e);
+
+                        if (context != null) {
+                            // Mostrar mensaje de error al usuario
+                            Toast.makeText(context, "Error al registrar la reserva", Toast.LENGTH_SHORT).show();
+                        }
+                    });
         }
     }
-
-
-    //Metodo para obtner el precio de boleto
 }

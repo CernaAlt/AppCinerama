@@ -18,6 +18,7 @@ import com.app.cinerma.design.peliculas.MoviesFragment;
 import com.app.cinerma.design.start.MainHomeFragment;
 import com.app.cinerma.dulceria.SnackFragment;
 import com.app.cinerma.login.activities.InicioSesionActivity;
+import com.app.cinerma.reservas.ReservasFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -52,6 +53,9 @@ public class MainActivity extends AppCompatActivity {
             if(item.getItemId()==R.id.foodM){
                 replaceFragment(new SnackFragment());
             }
+            if(item.getItemId()==R.id.moreM){
+                replaceFragment(new ReservasFragment());
+            }
             return true;
         });
 
@@ -71,6 +75,10 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
+
+
 
     }
 

@@ -1,8 +1,11 @@
 package com.app.cinerma.design.peliculas.entities;
 
 import java.util.List;
+import java.util.UUID;
 
 public class Reserva {
+
+    private  String id;
     private String city;
     private String movie;
     private String cinema;
@@ -14,7 +17,22 @@ public class Reserva {
 
     public Reserva() {} // Constructor sin argumentos
 
-    public Reserva(String city, String movie, String cinema, String hour, String date, String seat, List<Ticket> tickets, List<PaymentInfo> payments) {
+    /*public Reserva(String city, String movie, String cinema, String hour, String date, String seat, List<Ticket> tickets, List<PaymentInfo> payments) {
+        this.city = city;
+        this.movie = movie;
+        this.cinema = cinema;
+        this.hour = hour;
+        this.date = date;
+        this.seat = seat;
+        this.tickets = tickets;
+        this.payments = payments;
+    }*/
+
+    // Constructor sin el parámetro id
+    // Constructor que incluye el campo `id`
+    public Reserva(String id, String city, String movie, String cinema, String hour,
+                   String date, String seat, List<Ticket> tickets, List<PaymentInfo> payments) {
+        this.id = id;
         this.city = city;
         this.movie = movie;
         this.cinema = cinema;
@@ -25,8 +43,14 @@ public class Reserva {
         this.payments = payments;
     }
 
-
     // Getters y Setters para cada campo
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getCinema() {
         return cinema;

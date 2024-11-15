@@ -45,7 +45,7 @@ public class CinemaSelecionAdapter extends RecyclerView.Adapter<CinemaSelecionAd
         //Bind formats
         /*holder.idiomasCine.removeAllViews();
         if (cinema.getFormat() != null) {
-            for (String format : cinema.getFormat()) {
+            for (String format : cinema.getFormat()) {https://github.com/CernaAlt/Semana13.git
                 TextView textView = new TextView(holder.itemView.getContext());
                 textView.setText(format);
                 textView.setTextSize(14);
