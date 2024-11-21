@@ -1,4 +1,4 @@
-package com.app.cinerma.login.Domain;
+package com.app.cinerma.login.Entities;
 
 import java.util.Date;
 

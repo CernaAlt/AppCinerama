@@ -29,8 +29,7 @@ import retrofit2.Response;
 
 public class Fragment_Cine_selection extends Fragment {
 
-    //private FirebaseFirestore firestore;
-    //private List<Cinema> cinemaList;
+
 
     private RecyclerView cinemaRecyclerView;
     private CinemaSelecionAdapter cinemaAdapter;
@@ -114,8 +113,6 @@ public class Fragment_Cine_selection extends Fragment {
                 Toast.makeText(getContext(), "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-
-
     }
 
     private void fetchCineHorariosFromMovie(Movie movie) {
@@ -135,31 +132,4 @@ public class Fragment_Cine_selection extends Fragment {
         }
     }
 
-
-
-    /*private void fetchCinemas() {
-        cinemaList.clear();
-        cinemaAdapter.notifyDataSetChanged();
-
-        firestore.collection("cines")
-                .addSnapshotListener((queryDocumentSnapshots, e) -> {
-                    if (e != null) {
-                        Toast.makeText(getContext(), "Error al cargar los cines: " + e.getMessage(), Toast.LENGTH_LONG).show();
-                        return;
-                    }
-
-                    if (queryDocumentSnapshots != null && !queryDocumentSnapshots.isEmpty()) {
-                        cinemaList.clear();
-
-                        for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
-                            Cinema cinema = document.toObject(Cinema.class);
-                            cinemaList.add(cinema);
-                        }
-
-                        cinemaAdapter.notifyDataSetChanged();
-                    } else {
-                        Toast.makeText(getContext(), "No se encontraron cines.", Toast.LENGTH_SHORT).show();
-                    }
-                });
-    }*/
 }

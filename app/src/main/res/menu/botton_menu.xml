@@ -3,7 +3,7 @@
     <item
         android:id="@+id/homeM"
         android:title="Inicio"
-        android:icon="@drawable/home_button"/>
+        android:icon="@drawable/ic_home"/>
     <item
         android:id="@+id/moviesM"
         android:title="Peliculas"
@@ -18,6 +18,6 @@
         android:icon="@drawable/food_button"/>
     <item
         android:id="@+id/moreM"
-        android:title="Más"
-        android:icon="@drawable/ic_more"/>
+        android:title="Reservaciones"
+        android:icon="@drawable/ic_reservation"/>
 </menu>

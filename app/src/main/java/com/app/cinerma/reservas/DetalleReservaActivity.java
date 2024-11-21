@@ -27,10 +27,10 @@ import java.util.List;
 
 public class DetalleReservaActivity extends AppCompatActivity {
 
-    TextView tvMovie, tvCinema, tvHour, tvDate, tvSeat;
+    TextView tvMovie, tvCinema, tvHour, tvDate,codigoReserva, tvSeat;
     LinearLayout ticketsLayout, paymentsLayout;
 
-    private List<Reserva> reservas = new ArrayList<>();
+    //private List<Reserva> reservas = new ArrayList<>();
     private DatabaseReference databaseReference;
 
     @Override
@@ -54,39 +54,13 @@ public class DetalleReservaActivity extends AppCompatActivity {
         tvSeat = findViewById(R.id.tvSeat);
         ticketsLayout = findViewById(R.id.ticketsLayout);
         paymentsLayout = findViewById(R.id.paymentsLayout);
+        codigoReserva=findViewById(R.id.txt_codReserva);
 
         // Fetch the reserva details by ID
         fetchReserva(reservaId);
 
     }
 
-    //quiero contruir un metodo que me permita obtener el objeto del tipo reserva reserva mediante el id de la reserva
-    /*private void fetchReserva(String reservaId) {
-        databaseReference.child(reservaId).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    // Convert the snapshot into a Reserva object
-                    Reserva reserva = dataSnapshot.getValue(Reserva.class);
-
-                    if (reserva != null) {
-                        reservas.add(reserva);
-                        // Update the UI with the reserva details
-                        updateReservaDetails(reserva);
-                    }
-                } else {
-                    // Log an error if no reserva is found
-                    Log.e("FetchReserva", "No reserva found with id: " + reservaId);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                // Handle database errors
-                Log.e("FetchReserva", "Database error: " + databaseError.getMessage());
-            }
-        });
-    }*/
 
     private void fetchReserva(String reservaId) {
         databaseReference = FirebaseDatabase.getInstance().getReference("reservas");
@@ -124,6 +98,7 @@ public class DetalleReservaActivity extends AppCompatActivity {
         tvHour.setText(reserva.getHour());
         tvDate.setText(reserva.getDate());
         tvSeat.setText(reserva.getSeat());
+        codigoReserva.setText(reserva.getId());
 
         // Clear layouts to avoid duplicate entries
         ticketsLayout.removeAllViews();

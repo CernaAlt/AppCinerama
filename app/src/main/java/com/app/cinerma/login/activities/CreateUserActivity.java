@@ -36,7 +36,7 @@ import java.util.Map;
 
 public class CreateUserActivity extends AppCompatActivity {
 
-    //Creamos una variable privada
+    // Declaramos variable de firebase
     private FirebaseFirestore mfirestore;
     private FirebaseAuth mAuth;
 
@@ -47,8 +47,6 @@ public class CreateUserActivity extends AppCompatActivity {
     EditText nombre, correo, apellidosPaterno, apellidoMaterno, telefono;
     RadioGroup gender;
 
-
-
     //button para register los data of the user
     Button btnRegister;
 
@@ -56,7 +54,6 @@ public class CreateUserActivity extends AppCompatActivity {
     private Spinner cineFavorito;
     private ArrayList<String> cineName;
     private HashMap<String, String> cineMap;
-
 
 
     @Override

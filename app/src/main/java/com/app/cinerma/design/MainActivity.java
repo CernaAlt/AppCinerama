@@ -26,15 +26,10 @@ public class MainActivity extends AppCompatActivity {
     ActivityMainBinding bilding;
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         bilding = ActivityMainBinding.inflate(getLayoutInflater());
-
-        // Initialize Firebase
-        //FirebaseApp.initializeApp(this);
 
 
 

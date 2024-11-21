@@ -19,6 +19,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="413dp"
+            android:layout_marginBottom="170dp"
             android:background="@color/colorFondo2"
             android:orientation="vertical"
             android:padding="16dp">
@@ -59,17 +60,9 @@
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="2dp"
             android:background="@color/colorText"
-            android:text="Historial"
+            android:text="Cerrar"
             android:textColor="@color/white"
             android:textSize="24sp" />
-
-        <FrameLayout
-            android:id="@+id/fragment_container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
     </LinearLayout>
-
-
 
 </ScrollView>

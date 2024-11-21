@@ -36,19 +36,16 @@ public class ConfirmacionPagoActivity extends AppCompatActivity {
             txtCodReserva.setText("Error: Código de reserva no disponible.");
         }
 
-
-
-
         // Button para ir a historial de reservas
         Button btnHistorial = findViewById(R.id.btn_historial);
 
         btnHistorial.setOnClickListener(v -> {
-            // Reemplazar el contenido de la actividad con el fragmento
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.fragment_container, new ReservasFragment())
-                    .addToBackStack(null) // Opcional, para que puedas volver atrás
-                    .commit();
+           //Cerra la actividad actual
+            finish();
+            // Inicia la actividad de historial de reservas
+            Intent intent = new Intent(ConfirmacionPagoActivity.this, MainActivity.class);
+            intent.putExtra("FRAGMENT", ReservasFragment.class.getSimpleName());
+            startActivity(intent);
         });
 
     }

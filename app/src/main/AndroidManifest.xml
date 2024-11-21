@@ -24,16 +24,10 @@
             android:name=".reservas.DetalleReservaActivity"
             android:exported="false" />
         <activity
-            android:name=".reservas.MainActivity"
-            android:exported="false" />
-        <activity
             android:name=".design.peliculas.activities.movie_selection_Activity"
             android:exported="false" />
         <activity
             android:name=".login.activities.InicioSesionActivity"
-            android:exported="false" />
-        <activity
-            android:name=".login.activities.PasswordOlvidadoActivity"
             android:exported="false" />
         <activity
             android:name=".login.activities.CreateUserActivity"

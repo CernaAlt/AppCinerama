@@ -47,7 +47,7 @@ public class CinemaFragment extends Fragment {
         //Instanciamos la base de datos de firestore
         firestore = FirebaseFirestore.getInstance();
         //Instanciamos el RecyclerView del nuestro Xml
-        verCine = view.findViewById(R.id.ryv_mostrarCine);
+        verCine = view.findViewById(R.id.ryv_Cinemas);
         //Configuramos el RecyclerView
         verCine.setLayoutManager(new LinearLayoutManager(getContext()));
 

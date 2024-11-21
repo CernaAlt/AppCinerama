@@ -44,13 +44,8 @@ public class movie_detailactivity extends AppCompatActivity {
     VideoView urlTrailer;
     private ChipGroup idiomaPelicula;
 
-    private List<CineHorario> cinesHorarios;
+    //private List<CineHorario> cinesHorarios;
 
-    //Traemos el adapter de CinemaSelecionAdapter
-    /*
-    private RecyclerView recyclerView;
-    private CinemaSelecionAdapter cinemaSelecionAdapter;
-    private List<Cines> cinesList;*/
 
 
 

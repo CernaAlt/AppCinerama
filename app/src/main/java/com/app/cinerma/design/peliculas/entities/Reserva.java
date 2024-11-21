@@ -15,20 +15,9 @@ public class Reserva {
     private List<Ticket> tickets;
     private List<PaymentInfo> payments;
 
-    public Reserva() {} // Constructor sin argumentos
+    // Constructor sin argumentos
+    public Reserva() {}
 
-    /*public Reserva(String city, String movie, String cinema, String hour, String date, String seat, List<Ticket> tickets, List<PaymentInfo> payments) {
-        this.city = city;
-        this.movie = movie;
-        this.cinema = cinema;
-        this.hour = hour;
-        this.date = date;
-        this.seat = seat;
-        this.tickets = tickets;
-        this.payments = payments;
-    }*/
-
-    // Constructor sin el parámetro id
     // Constructor que incluye el campo `id`
     public Reserva(String id, String city, String movie, String cinema, String hour,
                    String date, String seat, List<Ticket> tickets, List<PaymentInfo> payments) {

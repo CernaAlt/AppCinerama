@@ -15,7 +15,7 @@ public class SeatSelectionView extends View {
     private Paint seatPaint;
     private Paint selectedSeatPaint;
     private List<Integer> selectedSeats = new ArrayList<>(); // Lista de asientos seleccionados
-    private int maxSelectableSeats = 5; // Límite de asientos seleccionados
+    private int maxSelectableSeats = 10; // Límite de asientos seleccionados
     private int totalSeats = 48;  // 8 filas * 6 columnas (ajusta según el total que necesites)
     private int columns = 6;// Número de columnas de la cuadrícula
     private int seatRadius = 30; // Radio de cada asiento

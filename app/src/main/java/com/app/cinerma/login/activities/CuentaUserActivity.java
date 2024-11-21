@@ -9,15 +9,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.app.cinerma.R;
-import com.app.cinerma.login.Domain.User;
+import com.app.cinerma.login.Entities.User;
 import com.app.cinerma.login.adapters.UserAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
-
-import java.util.List;
 
 public class CuentaUserActivity extends AppCompatActivity {
 

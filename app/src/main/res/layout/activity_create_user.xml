@@ -20,7 +20,7 @@
             android:text="Únete"
             android:textSize="24sp"
             android:textStyle="bold"
-            android:textColor="@color/white"
+            android:textColor="@color/colorText"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="16dp" />
 
@@ -30,6 +30,7 @@
             android:layout_height="wrap_content"
             android:text="Completa tus datos y accede a nuestro universo de beneficios"
             android:textSize="14sp"
+            android:textAlignment="center"
             android:textColor="@color/white"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="24dp" />
@@ -94,6 +95,14 @@
             android:inputType="textPassword"
             android:layout_marginBottom="16dp" />
 
+        <!-- Spinner para seleccionar un cine -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:layout_marginBottom="5dp"
+            android:text="Tipo de documento" />
+
         <!-- Document Type -->
         <Spinner
             android:layout_width="match_parent"
@@ -130,27 +139,13 @@
             android:inputType="phone"
             android:layout_marginBottom="16dp" />
 
-        <!-- Department -->
-        <Spinner
-            android:layout_width="match_parent"
+        <!-- Spinner para seleccionar un cine -->
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Departamento"
-            android:textColorHint="@color/white"
-            android:layout_marginBottom="16dp" />
-
-        <!-- Province -->
-        <Spinner
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Provincia"
-            android:layout_marginBottom="16dp" />
-
-        <!-- District -->
-        <Spinner
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Distrito"
-            android:layout_marginBottom="16dp" />
+            android:textColor="@color/white"
+            android:layout_marginBottom="5dp"
+            android:text="Cine Favorito" />
 
         <!-- Favorite Cineplanet -->
         <Spinner
@@ -181,11 +176,11 @@
 
             <RadioButton
                 android:id="@+id/rb_hombre"
-                android:layout_width="wrap_content"
+                android:layout_width="97dp"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
                 android:text="Hombre"
-                android:textColor="@color/white"
-                android:layout_marginEnd="16dp" />
+                android:textColor="@color/white" />
 
             <RadioButton
                 android:id="@+id/rb_mujer"
@@ -214,16 +209,16 @@
             android:textSize="14sp"
             android:layout_marginBottom="24dp" />
 
-        <!-- Submit Button -->
+
         <Button
             android:id="@+id/btn_addUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Unirme"
-            android:textColor="#FFFFFF"
-            android:background="#E91E63"
-            android:padding="12dp" />
+            android:textColor="@color/white"
+            android:backgroundTint="@color/colorText"
+            android:padding="12dp"
+            android:layout_marginBottom="32dp" />
 
     </LinearLayout>
-
 </ScrollView>
